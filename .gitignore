@@ -1,0 +1,13 @@
+*.pyc
+*.egg
+*.egg-info
+*.un~
+dist/
+env26/
+.coverage
+bin/
+include/
+lib/
+local
+nosetests.xml
+pyramid_analytics/coverage.xml
