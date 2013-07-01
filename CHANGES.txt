@@ -1,6 +1,12 @@
 0.1 (2013-07-01)
 ------------
 
+- Repackaged
+
+
+0.1 (2013-07-01)
+------------
+
 - Allow for the following segment.io configuration options: 
   ``secret``, 
   ``flush_at``, 
