@@ -2,6 +2,7 @@
 *.egg
 *.egg-info
 *.un~
+*.swp
 dist/
 env26/
 .coverage

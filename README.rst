@@ -21,7 +21,7 @@ Segment.io initializer for the Pyramid Web Framework. 100% Test Covered.
 
 - To manage the ``log_level`` and ``log`` options specified by Segment.io's
   analytics-python, you should set the following configuration in your .ini
-  file:
+  file::
 
     [logger_analytics]
     level = WARN
