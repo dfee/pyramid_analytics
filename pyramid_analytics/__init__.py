@@ -1,12 +1,8 @@
 from datetime import timedelta
+from pyramid.settings import asbool
 import logging
 
 import analytics
-
-
-def string_to_bool(string):
-    """ Returns ``True`` if string is "True", otherwise, returns ``False`` """
-    return string == 'True'
 
 
 def includeme(config):
@@ -38,8 +34,8 @@ def includeme(config):
 
     # Other environment details
     secret = settings.get('analytics.secret').strip()
-    async = string_to_bool(settings.get('analytics.async', 'True').strip())
-    send = string_to_bool(settings.get('analytics.send', 'True').strip())
+    async = asbool(settings.get('analytics.async', 'True').strip())
+    send = asbool(settings.get('analytics.send', 'True').strip())
     max_queue_size = int(settings.get(
         'analytics.max_queue_size', '10').strip())
 

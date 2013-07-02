@@ -4,19 +4,8 @@ import unittest
 
 from pyramid.compat import configparser
 from pyramid.path import AssetResolver
+from pyramid.settings import asbool
 from pyramid import testing
-
-from pyramid_analytics import string_to_bool
-
-
-class TestHelper(unittest.TestCase):
-    def test_true(self):
-        self.assertTrue(string_to_bool('True'))
-
-    def test_false(self):
-        self.assertFalse(string_to_bool('False'))
-        self.assertFalse(string_to_bool(None))
-        self.assertFalse(string_to_bool('anything_else'))
 
 
 class TestPyramidIntegration(unittest.TestCase):
@@ -55,9 +44,9 @@ class TestPyramidIntegration(unittest.TestCase):
         self.assertEqual(analytics.default_client.flush_after.seconds,
                          int(settings['analytics.flush_after']))
         self.assertEqual(analytics.default_client.async,
-                         string_to_bool(settings['analytics.async']))
+                         asbool(settings['analytics.async']))
         self.assertEqual(analytics.default_client.send,
-                         string_to_bool(settings['analytics.send']))
+                         asbool(settings['analytics.send']))
         self.assertEqual(analytics.default_client.max_queue_size,
                          int(settings['analytics.max_queue_size']))
 
@@ -80,4 +69,3 @@ class TestPyramidIntegration(unittest.TestCase):
         # Check config
         self.assertEqual(analytics.default_client.secret,
                          settings['analytics.secret'])
-

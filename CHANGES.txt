@@ -1,7 +1,7 @@
-0.1 (2013-07-01)
+0.1.2 (2013-07-02)
 ------------
 
-- Repackaged
+- Relying on Pyramid's asbool helper for more robust boolean detection.
 
 
 0.1 (2013-07-01)
