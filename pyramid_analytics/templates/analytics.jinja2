@@ -1,0 +1,23 @@
+{#
+  // The unminified Javascript
+	var initialize_analytics = function(tdata) {
+		if (tdata.alias !== null) {
+			analytics.alias(tdata.alias);
+		} else if (tdata.identify !== null) {
+			analytics.identify(tdata.identify);
+		}
+
+		var i = 0;
+		while (i < tdata.events.length) {
+			var _event = tdata.events[i];
+			analytics.track(_event.event, _event.properties);
+			i++;
+		}
+	};
+
+	analytics.load("{{ analytics['api_token'] }}");
+	initialize_analytics({{ analytics['tracking_json']|safe }});
+#}
+<script>
+var initialize_analytics=function(c){if(c.alias!==null){analytics.alias(c.alias)}else{if(c.identify!==null){analytics.identify(c.identify)}}var b=0;while(b<c.events.length){var a=c.events[b];analytics.track(a.event,a.properties);b++}};analytics.load("{{ analytics['api_token'] }}");initialize_analytics({{ analytics['tracking_json']|safe }});
+</script>

@@ -1,11 +1,20 @@
 from datetime import timedelta
-from pyramid.settings import asbool
 import logging
 
 import analytics
+from pyramid.events import BeforeRender, NewRequest
+from pyramid.settings import asbool
+
+from .events import (
+    add_analytics_prerender,
+    add_analytics_to_request,
+    update_analytics_user_id,
+    UpdatedAnalyticsUserId)
+
+log = logging.getLogger('analytics')
 
 
-def includeme(config):
+def initialize_analytics(settings):
     """ Provide useful configuration to a Pyramid ``Configurator`` instance.
 
     Currently, this hook will set up and register Segment.io's analytics.
@@ -20,8 +29,6 @@ def includeme(config):
     Other configuration data should be copied from your Segment.io panel.
     More at http://segment.io.
     """
-
-    settings = config.registry.settings
 
     # Logging
     analytics_log = logging.getLogger('analytics')
@@ -47,3 +54,11 @@ def includeme(config):
         async=async,
         send=send,
         max_queue_size=max_queue_size)
+
+
+def includeme(config):
+    settings = config.registry.settings
+    initialize_analytics(settings)
+    config.add_subscriber(add_analytics_prerender, BeforeRender)
+    config.add_subscriber(add_analytics_to_request, NewRequest)
+    config.add_subscriber(update_analytics_user_id, UpdatedAnalyticsUserId)

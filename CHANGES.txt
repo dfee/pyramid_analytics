@@ -1,11 +1,16 @@
+0.2 (2013-07-02)
+----------------
+
+- Added AnalyticsHelper to the package, provide deeper Pyramid integration.
+
 0.1.2 (2013-07-02)
-------------
+------------------
 
 - Relying on Pyramid's asbool helper for more robust boolean detection.
 
 
 0.1 (2013-07-01)
-------------
+----------------
 
 - Allow for the following segment.io configuration options: 
   ``secret``, 
